@@ -21,6 +21,7 @@ from .common import (
     rewrite_zip,
     validate_archive,
 )
+from .hwpx_tables import hwpx_analyze_tables
 
 XML_PARSER = etree.XMLParser(resolve_entities=False, no_network=True, recover=False, huge_tree=False)
 
@@ -61,6 +62,7 @@ def hwpx_health() -> dict[str, Any]:
         "features": [
             "validate",
             "inspect",
+            "analyze_table_morphology",
             "extract_text",
             "find_text",
             "replace_text_across_runs",
@@ -479,6 +481,7 @@ def register_hwpx_tools(mcp: Any) -> None:
         hwpx_health,
         hwpx_validate,
         hwpx_inspect,
+        hwpx_analyze_tables,
         hwpx_extract_text,
         hwpx_find_text,
         hwpx_replace_text,

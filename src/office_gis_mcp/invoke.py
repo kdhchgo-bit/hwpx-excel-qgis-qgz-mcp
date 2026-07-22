@@ -16,6 +16,7 @@ from .excel_tools import (
     excel_write_range,
 )
 from .hwpx_tools import (
+    hwpx_analyze_tables,
     hwpx_export_pdf,
     hwpx_extract_text,
     hwpx_find_text,
@@ -43,6 +44,7 @@ TOOLS: dict[str, Tool] = {
         hwpx_health,
         hwpx_validate,
         hwpx_inspect,
+        hwpx_analyze_tables,
         hwpx_extract_text,
         hwpx_find_text,
         hwpx_replace_text,
