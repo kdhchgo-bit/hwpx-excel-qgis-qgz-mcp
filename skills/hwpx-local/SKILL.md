@@ -1,6 +1,6 @@
 ---
 name: hwpx-local
-description: Inspect, validate, search, extract, copy-edit, native-open, or export local Hangul HWPX files on Windows. Use when the user names an .hwpx file, asks to preserve Hangul layout, replace HWPX text, check package integrity, extract document text, or convert HWPX to PDF with installed Hancom Hangul.
+description: Inspect, validate, search, extract, copy-edit, native-open, or export local Hangul HWPX files on Windows, including table morphology analysis for merged cells, headers, body rows, bottom form rows, fills, and inner/outer borders. Use when the user names an .hwpx file, asks to preserve Hangul layout, edit or understand a table, replace HWPX text, check package integrity, extract document text, or convert HWPX to PDF with installed Hancom Hangul.
 ---
 
 # HWPX Local
@@ -11,9 +11,10 @@ Use the verified local HWPX engine directly; it does not depend on an MCP server
 
 1. Resolve the exact source file named by the user.
 2. Run `hwpx_validate` and `hwpx_inspect` before any edit.
-3. For an edit, use an explicit new `output_path`. Keep `overwrite=false` unless the user explicitly authorizes replacing that exact output.
-4. Run `hwpx_validate`, `hwpx_inspect`, or `hwpx_find_text` on the output and report its full path.
-5. Use native Hangul operations only for open verification or PDF export; they run hidden and close after use.
+3. For table work, run `hwpx_analyze_tables` before editing. Read [references/table-morphology.md](references/table-morphology.md) before structural or border changes.
+4. For an edit, use an explicit new `output_path`. Keep `overwrite=false` unless the user explicitly authorizes replacing that exact output.
+5. Run `hwpx_validate`, `hwpx_inspect`, or `hwpx_find_text` on the output and report its full path.
+6. Use native Hangul operations only for open verification or PDF export; they run hidden and close after use.
 
 This skill supports `.hwpx`, not legacy binary `.hwp` editing.
 
@@ -35,6 +36,7 @@ Do not use long `python -c` commands for Korean paths. Check the returned `ok` f
 - `hwpx_health`: `{}`
 - `hwpx_validate`: `path`
 - `hwpx_inspect`: `path`, optional `paragraph_preview_limit`
+- `hwpx_analyze_tables`: `path`, optional zero-based `table_index`, `include_cells`, `max_cells`
 - `hwpx_extract_text`: `path`, optional `output_path`, `overwrite`
 - `hwpx_find_text`: `path`, `query`, optional `regex`, `max_results`
 - `hwpx_replace_text`: `path`, `old`, `new`, optional `output_path`, `max_replacements`, `overwrite`
@@ -42,3 +44,5 @@ Do not use long `python -c` commands for Korean paths. Check the returned `ok` f
 - `hwpx_export_pdf`: `path`, `output_pdf`, optional `overwrite`
 
 `hwpx_replace_text` handles literal text split across HWPX runs, but it is not a general style editor. For font/color/table-layout surgery, inspect the package XML and make the smallest verified package-level change instead of forcing this replacement tool.
+
+Treat `tc@header` as explicit evidence. Treat inferred header and bottom-form rows as scored candidates and preserve their evidence and warnings. Address merged cells through their reported anchor and `covers` coordinates; never assume every logical grid coordinate owns a separate `tc` element.

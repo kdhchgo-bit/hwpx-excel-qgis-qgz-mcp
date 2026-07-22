@@ -1,4 +1,4 @@
 interface:
   display_name: "HWPX Local"
-  short_description: "Inspect, edit, and export local HWPX files"
-  default_prompt: "Use $hwpx-local to inspect or edit a local HWPX file while preserving the original."
+  short_description: "Inspect HWPX tables, layout, and borders"
+  default_prompt: "Use $hwpx-local to analyze or edit an HWPX file, including merged cells, row roles, and borders."
