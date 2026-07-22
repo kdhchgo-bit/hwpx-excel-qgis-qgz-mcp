@@ -1,0 +1,4 @@
+interface:
+  display_name: "QGIS Local"
+  short_description: "Inspect QGIS projects and run Processing tools"
+  default_prompt: "Use $qgis-local to inspect or update a local QGIS project with explicit output paths."

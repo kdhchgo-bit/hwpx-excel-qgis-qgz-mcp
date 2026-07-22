@@ -1,0 +1,4 @@
+interface:
+  display_name: "HWPX Local"
+  short_description: "Inspect, edit, and export local HWPX files"
+  default_prompt: "Use $hwpx-local to inspect or edit a local HWPX file while preserving the original."

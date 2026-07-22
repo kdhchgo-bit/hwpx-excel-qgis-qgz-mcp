@@ -1,0 +1,4 @@
+interface:
+  display_name: "Excel Local"
+  short_description: "Inspect, edit, recalculate, and export Excel files"
+  default_prompt: "Use $excel-local to inspect or edit a local Excel workbook while preserving its structure."

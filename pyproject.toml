@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "office-gis-mcp"
+version = "0.1.0"
+description = "Local MCP servers specialized for HWPX, Excel, and QGIS QGZ workflows on Windows"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "lxml>=6.0,<7",
+  "mcp>=1.28,<2",
+  "openpyxl>=3.1,<4",
+  "pywin32>=312; sys_platform == 'win32'",
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.4,<9",
+]
+
+[project.scripts]
+office-gis-mcp = "office_gis_mcp.server:cli"
+office-gis-invoke = "office_gis_mcp.invoke:cli"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/office_gis_mcp"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
