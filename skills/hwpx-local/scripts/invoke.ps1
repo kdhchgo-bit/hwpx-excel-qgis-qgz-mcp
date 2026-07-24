@@ -1,6 +1,6 @@
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet('hwpx_health', 'hwpx_validate', 'hwpx_inspect', 'hwpx_analyze_tables', 'hwpx_extract_text', 'hwpx_find_text', 'hwpx_replace_text', 'hwpx_native_open_check', 'hwpx_export_pdf')]
+    [ValidateSet('hwpx_health', 'hwpx_validate', 'hwpx_inspect', 'hwpx_analyze_tables', 'hwpx_analyze_paragraph_hierarchy', 'hwpx_normalize_paragraph_hierarchy', 'hwpx_extract_text', 'hwpx_find_text', 'hwpx_replace_text', 'hwpx_native_open_check', 'hwpx_export_pdf')]
     [string]$Tool,
     [string]$Json = '{}',
     [switch]$Pretty

@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-import re
-import os
 import csv
 import locale
+import os
+import re
 import subprocess
 import time
 import zipfile
@@ -20,6 +20,10 @@ from .common import (
     require_file,
     rewrite_zip,
     validate_archive,
+)
+from .hwpx_paragraphs import (
+    hwpx_analyze_paragraph_hierarchy,
+    hwpx_normalize_paragraph_hierarchy,
 )
 from .hwpx_tables import hwpx_analyze_tables
 
@@ -63,6 +67,8 @@ def hwpx_health() -> dict[str, Any]:
             "validate",
             "inspect",
             "analyze_table_morphology",
+            "analyze_paragraph_hierarchy",
+            "normalize_paragraph_hierarchy",
             "extract_text",
             "find_text",
             "replace_text_across_runs",
@@ -482,6 +488,8 @@ def register_hwpx_tools(mcp: Any) -> None:
         hwpx_validate,
         hwpx_inspect,
         hwpx_analyze_tables,
+        hwpx_analyze_paragraph_hierarchy,
+        hwpx_normalize_paragraph_hierarchy,
         hwpx_extract_text,
         hwpx_find_text,
         hwpx_replace_text,

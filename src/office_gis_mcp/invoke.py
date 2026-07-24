@@ -16,6 +16,7 @@ from .excel_tools import (
     excel_write_range,
 )
 from .hwpx_tools import (
+    hwpx_analyze_paragraph_hierarchy,
     hwpx_analyze_tables,
     hwpx_export_pdf,
     hwpx_extract_text,
@@ -23,6 +24,7 @@ from .hwpx_tools import (
     hwpx_health,
     hwpx_inspect,
     hwpx_native_open_check,
+    hwpx_normalize_paragraph_hierarchy,
     hwpx_replace_text,
     hwpx_validate,
 )
@@ -45,6 +47,8 @@ TOOLS: dict[str, Tool] = {
         hwpx_validate,
         hwpx_inspect,
         hwpx_analyze_tables,
+        hwpx_analyze_paragraph_hierarchy,
+        hwpx_normalize_paragraph_hierarchy,
         hwpx_extract_text,
         hwpx_find_text,
         hwpx_replace_text,
