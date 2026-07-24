@@ -1,4 +1,4 @@
 interface:
   display_name: "HWPX Local"
-  short_description: "Inspect HWPX tables, layout, and borders"
-  default_prompt: "Use $hwpx-local to analyze or edit an HWPX file, including merged cells, row roles, and borders."
+  short_description: "Analyze HWPX tables and report hierarchy"
+  default_prompt: "Use $hwpx-local to analyze or edit an HWPX file, including table morphology, numbered paragraph levels, indentation, and divider pages."

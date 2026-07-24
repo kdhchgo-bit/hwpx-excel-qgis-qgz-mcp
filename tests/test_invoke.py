@@ -10,6 +10,8 @@ from office_gis_mcp.invoke import TOOLS, _load_arguments, invoke_tool
 def test_tool_registry_contains_all_domains():
     assert {"hwpx_health", "excel_health", "qgis_health"} <= TOOLS.keys()
     assert "hwpx_analyze_tables" in TOOLS
+    assert "hwpx_analyze_paragraph_hierarchy" in TOOLS
+    assert "hwpx_normalize_paragraph_hierarchy" in TOOLS
 
 
 def test_invoke_health_returns_envelope():
@@ -22,6 +24,8 @@ def test_invoke_health_returns_envelope():
 def test_hwpx_health_lists_table_morphology():
     response = invoke_tool("hwpx_health")
     assert "analyze_table_morphology" in response["result"]["features"]
+    assert "analyze_paragraph_hierarchy" in response["result"]["features"]
+    assert "normalize_paragraph_hierarchy" in response["result"]["features"]
 
 
 def test_arguments_must_be_json_object():

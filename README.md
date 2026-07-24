@@ -12,7 +12,7 @@
 
 이 프로젝트는 문서·스프레드시트·GIS 프로젝트를 Codex에서 직접 검사하고 편집할 수 있도록 세 가지 로컬 도구 세트를 제공합니다.
 
-- `$hwpx-local`: HWPX 구조 검증, 표 병합·헤더·본문·최하단 양식·외곽/내부 테두리 분석, 텍스트 검색·추출·치환, 한컴오피스 한글을 이용한 열기 확인 및 PDF 변환
+- `$hwpx-local`: HWPX 구조 검증, 표 병합·헤더·본문·최하단 양식·외곽/내부 테두리 분석, `1.`/`가.`/`1)`/`가)` 문단 수준과 들여쓰기·글자 스타일 분석 및 정규화, 간지 제외 토글, 텍스트 검색·추출·치환, 한컴오피스 한글을 이용한 열기 확인 및 PDF 변환
 - `$excel-local`: 통합 문서·시트·수식 검사, 범위 읽기와 검색, 서식 보존 입력, Excel 재계산 및 PDF 변환
 - `$qgis-local`: QGS/QGZ 프로젝트와 레이어 검사, 누락된 데이터소스 감사, 경로 재설정, QGIS Processing 알고리즘 조회·실행
 
@@ -57,6 +57,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install.ps1 `
 ```text
 $hwpx-local D:\문서\보고서.hwpx를 검사하고 250mm를 350mm로 바꾼 복사본을 만들어줘.
 $hwpx-local D:\문서\양식.hwpx의 표별 병합 구조와 헤더·본문·최하단 양식, 외곽/내부 테두리를 분석해줘.
+$hwpx-local D:\문서\보고서.hwpx의 1. / 가. / 1) / 가) 문단 수준을 분석하고, 간지는 제외한 채 정상 문단을 기준으로 들여쓰기와 글자 스타일을 통일할 변경안을 먼저 보여줘.
 $excel-local D:\자료\계산서.xlsx의 집계 시트 G3:H30을 읽고 기존 서식을 유지해 값을 채워줘.
 $qgis-local D:\GIS\사업.qgz의 누락된 레이어 경로를 검사하고 경로를 수정한 복사본을 만들어줘.
 ```
@@ -78,7 +79,7 @@ $qgis-local D:\GIS\사업.qgz의 누락된 레이어 경로를 검사하고 경�
 
 This project provides three local toolsets that let Codex inspect and edit office documents, spreadsheets, and GIS projects on Windows.
 
-- `$hwpx-local`: validate HWPX packages; analyze merged cells, headers, body rows, bottom-form rows, and inner/outer borders; search, extract, and replace text; verify opening in Hancom Hangul; export PDF
+- `$hwpx-local`: validate HWPX packages; analyze merged cells and borders; analyze and normalize numbered report hierarchy, hanging indents, and character styles; optionally exclude interleave/divider pages; search, extract, and replace text; verify opening in Hancom Hangul; export PDF
 - `$excel-local`: inspect workbooks, sheets, and formulas; read and search ranges; write while preserving formatting; recalculate with Excel; export PDF
 - `$qgis-local`: inspect QGS/QGZ projects and layers; audit missing data sources; rebase project paths; discover and run QGIS Processing algorithms
 
@@ -123,6 +124,7 @@ The installer creates the project virtual environment, registers all three MCP s
 ```text
 $hwpx-local inspect D:\docs\report.hwpx and create a separate copy that replaces 250mm with 350mm.
 $hwpx-local analyze merged cells, header/body/footer roles, and inner/outer borders in every table in D:\docs\form.hwpx.
+$hwpx-local analyze 1. / 가. / 1) / 가) paragraph levels in D:\docs\report.hwpx, exclude divider pages, and show a dry-run plan that normalizes indentation and text styles from correct paragraphs in the same document.
 $excel-local read Summary!G3:H30 in D:\data\estimate.xlsx and fill values while preserving the existing format.
 $qgis-local audit missing layer sources in D:\GIS\project.qgz and create a copy with rebased paths.
 ```
@@ -142,7 +144,7 @@ Natural-language routing can select a skill automatically, but explicitly naming
 
 | Server / skill | Tools |
 |---|---|
-| `hwpx-local` | `hwpx_validate`, `hwpx_inspect`, `hwpx_analyze_tables`, `hwpx_extract_text`, `hwpx_find_text`, `hwpx_replace_text`, `hwpx_native_open_check`, `hwpx_export_pdf` |
+| `hwpx-local` | `hwpx_validate`, `hwpx_inspect`, `hwpx_analyze_tables`, `hwpx_analyze_paragraph_hierarchy`, `hwpx_normalize_paragraph_hierarchy`, `hwpx_extract_text`, `hwpx_find_text`, `hwpx_replace_text`, `hwpx_native_open_check`, `hwpx_export_pdf` |
 | `excel-local` | `excel_inspect`, `excel_read_range`, `excel_find`, `excel_write_range`, `excel_recalculate`, `excel_export_pdf` |
 | `qgis-local` | `qgz_inspect`, `qgz_audit_sources`, `qgz_rebase_paths`, `qgis_list_algorithms`, `qgis_algorithm_help`, `qgis_run_algorithm` |
 
